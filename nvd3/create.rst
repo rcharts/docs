@@ -61,11 +61,11 @@ Scatter Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-scatter.html
+        ../_downloads/nvd3-scatter.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182856dfe44bd
+        chart1868d3ffa04fc
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -108,11 +108,11 @@ Multibar Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-multibar.html
+        ../_downloads/nvd3-multibar.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182857c676845
+        chart1868d52921d51
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -145,11 +145,11 @@ Multibar Horizontal Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-multibar-horizontal.html
+        ../_downloads/nvd3-multibar-horizontal.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182851503ee29
+        chart1868d72c46939
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -190,11 +190,11 @@ Pie Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-pie.html
+        ../_downloads/nvd3-pie.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1828555b2289d
+        chart1868d1f7c9b09
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -233,11 +233,11 @@ Donut Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-donut.html
+        ../_downloads/nvd3-donut.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart18285586f8032
+        chart1868dd1843ad
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -276,11 +276,11 @@ Line Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-line.html
+        ../_downloads/nvd3-line.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182855970f63b
+        chart1868d3783daeb
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -325,11 +325,11 @@ Line with Focus Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-line-with-focus.html
+        ../_downloads/nvd3-line-with-focus.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182855c36fc5d
+        chart1868d5a79ba9a
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -374,11 +374,11 @@ Stacked Area Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-stacked-area.html
+        ../_downloads/nvd3-stacked-area.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1828516cfdb7d
+        chart1868d6982337a
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -424,11 +424,11 @@ Multi Chart
         
     
         <iframe src='
-        ../../_downloads/nvd3-multi-chart.html
+        ../_downloads/nvd3-multi-chart.html
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart182855ee61c20
+        chart1868d918f68d
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 

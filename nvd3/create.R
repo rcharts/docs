@@ -8,7 +8,7 @@ options(
   RCHART_HEIGHT = 450
 )
 library(knitr)
-opts_chunk$set(tidy = F, results = 'asis', comment = NA, results = 'html', relpath = '../../_downloads')
+opts_chunk$set(tidy = F, results = 'asis', comment = NA, results = 'html')
 
 
 ## ----nvd3-scatter--------------------------------------------------------
