@@ -1,0 +1,212 @@
+.. _share:
+
+Share
+======
+
+Any visualization is useful only when you are able to share it. rCharts
+tries to make it really easy to share the visualizations you create. Let
+us first create a simple interactive scatterplot to illustrate the
+different sharing mechanisms built into rCharts
+
+.. contents::
+   :local:
+   :depth: 1
+
+.. sourcecode:: r
+
+    library(rCharts)
+    r1 <- rPlot(mpg ~ wt, data = mtcars, type = 'point')
+
+Save
+~~~~
+
+You can save your chart using the ``save`` method. The additional
+parameters passed to the ``save`` method determine how the js/css assets
+of the javascript visualization library are served. You can now email
+your visualization or embed it in a blog post as an iframe.
+
+.. sourcecode:: r
+
+    # link js/css assets from an online cdn
+    r1$save('mychart1.html', cdn = TRUE)
+    # create standalone chart with all assets included directly in the html file
+    r1$save('mychart2.html', standalone = TRUE)
+
+Publish
+~~~~~~~
+
+Sometimes, you may want to directly publish the visualization you
+created, without having to bother with the steps of saving it and then
+uploading it. rChart has you covered here, and provides a ``publish``
+method that combines these two steps. It currently supports publishing
+to `RPubs <http://rpubs.com>`_ and `Gist <http://gist.github.com>`_ and I expect to add more providers over
+time.
+
+.. sourcecode:: r
+
+    # the host defaults to 'gist'
+    r1$publish("My Chart")
+    r1$publish("My Chart", host = 'rpubs')
+
+Publishing a chart saves the html in a temporary file, uploads it to the
+specified ``host``, and returns a link to where the chart can be viewed.
+There are many gist viewers out there, and rCharts uses a custom viewer
+http://rcharts.io/viewer, designed specifically for rCharts, and is a
+modified version of another excellent gist viewer
+http://www.pagist.info/. Another popular gist viewer is
+http://blocks.org, built by Mike Bostock, the creator of
+`d3.js <http://d3js.org>`__.
+
+If you wish to simply **update** a visualization you have already
+created and shared, you can pass the gist/rpubs id to the ``publish``
+method, and it will update instead of uploading it as a brand new chart.
+
+.. sourcecode:: r
+
+    r1$publish("My Chart", id = 9253202)
+
+While using a provider like `Gist <http://gist.github.com>`__ that
+allows multiple files to be uploaded, you can use the ``extras``
+argument to add additional files that you want to upload. This is
+especially useful, if you want to provide a ``README.md`` or upload
+external assets like js/css/json files that are required for your chart
+to render.
+
+.. sourcecode:: r
+
+    r1$publish("My Chart", id = 9253202, extras = "README.md")
+
+Embed
+~~~~~
+
+RMarkdown
+^^^^^^^^^
+
+
+
+Suppose you wish to embed a visualization created using rCharts in an
+`Rmd <https://www.rstudio.com/ide/docs/r_markdown>`__ document.
+
+**IFrame**
+
+One way to do this would be to use the ``save`` method to save the
+chart, and then embed it as an iframe. rCharts saves you the steps by
+allowing you to use the ``show`` method and specify that you want the
+chart to be embedded as an ``iframe``.
+
+We need to set the chunk options ``comment = NA`` and
+``results = "asis"`` so that the resulting html is rendered asis and not
+marked up (which is the default in knitr).
+
+.. sourcecode:: r
+
+    ``x{r results = "asis", comment = NA}
+    r1$show('iframe', cdn = TRUE)
+    ```
+
+If you have several charts in your Rmd document, you can set these
+options globally in a setup chunk. Make sure to set ``cache = F`` for
+this chunk so that it is always run.
+
+.. sourcecode:: r
+
+    ``x{r setup, cache = F}
+    options(rcharts.mode = 'iframe', rcharts.cdn = TRUE)
+    knitr::opts_chunk$set(results = "asis", comment = NA)
+    ```
+
+You can now rewrite the earlier sourcecode chunk simply as
+
+.. sourcecode:: r
+
+    ``x{r}
+    r1
+    ```
+
+I prefer this style when writing, since it allows a user to simply copy
+paste sourcecode from the html and run it in their R console.
+
+**IFrame Inline**
+
+The ``iframe`` mode requires users to upload the additional chart html
+files along with their document. This introduces additional steps, and
+in the case of some providers like Rpubs, is not even possible. Hence,
+rCharts provides an additional mode named ``iframesrc`` that embeds the
+chart as an inline iframe, which makes your document self contained.
+
+
+.. sourcecode:: r
+
+    ``x{r results = "asis", comment = NA}
+    r1$show('iframesrc', cdn  = TRUE)
+    ```
+
+This option has the advantage of keeping the html standalone, but
+isolating the chart from the html on the page, thereby avoiding css and
+js conflicts. However, this feature is `not supported by IE and
+Opera <http://www.w3schools.com/tags/att_iframe_srcdoc.asp>`__.
+
+**Inline**
+
+A third option to embed an rCharts created visualization is to inline
+the chart directly. Note that you need to add ``include_assets = TRUE``,
+only the first time you are creating a chart using a specific library.
+
+.. sourcecode:: r
+
+    ``x{r chart3}
+    r1$show('inline', include_assets = TRUE, cdn = TRUE)
+    ```
+
+This approach should work in all browsers, however, it is susceptible to
+css and js conflicts.
+
+If you are using `Slidify <http://slidify.github.io>`_ to author your Rmd, then you can specify the charting library as ``ext_widgets`` in the YAML front matter. Here is a minimal reproducible example.
+
+.. literalinclude:: _downloads/deck.txt
+   :emphasize-lines: 4
+
+
+Note how you did not have to specify ``include_assets = TRUE``. This is because slidify uses the ``ext_widgets`` property to automatically pick up the required assets and include them in the header of the resulting html page.
+
+Shiny
+^^^^^
+
+It is easy to embed visualizations created using rCharts into a `Shiny <http://rstudio.com/shiny>`_ application. The main idea is to make use of the utility functions :func:`renderChart` and :func:`showOutput`. The shiny application created using the code below, can be seen `here <http://glimmer.rstudio.com/rChartsApp>`_
+
+.. sourcecode:: r
+   :emphasize-lines: 4, 29
+
+    ## server.r
+    require(rCharts)
+    shinyServer(function(input, output) {
+      output$myChart <- renderChart({
+        names(iris) = gsub("\\.", "", names(iris))
+        p1 <- rPlot(input$x, input$y, data = iris, color = "Species", 
+          facet = "Species", type = 'point')
+        p1$addParams(dom = 'myChart')
+        return(p1)
+      })
+    })
+
+    ## ui.R
+    require(rCharts)
+    shinyUI(pageWithSidebar(
+      headerPanel("rCharts: Interactive Charts from R using polychart.js"),
+
+      sidebarPanel(
+        selectInput(inputId = "x",
+         label = "Choose X",
+         choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+         selected = "SepalLength"),
+        selectInput(inputId = "y",
+          label = "Choose Y",
+          choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+          selected = "SepalWidth")
+      ),
+      mainPanel(
+        showOutput("myChart", "polycharts")
+      )
+    ))
+
+

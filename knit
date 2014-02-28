@@ -1,0 +1,96 @@
+#!/usr/bin/Rscript
+
+## Original Source: github.com/yihui/knitr-book/knit.sh
+## Author         : Yihui Xie
+## Modified       : Ramnath Vaidyanathan
+
+## LOAD KNITR LIBRARY -----------------------------------------------------
+library(knitr)
+library(ascii)
+options(asciiType = 'rest')
+
+## INPUT PATTERN FOR CODE CHUNKS --------------------------------
+## `ro [global options] or`
+## ``` {r code begin} [block code] ````
+## `ri [inline code] ir`
+
+pat_md()       
+
+## SET RST AS OUTPUT FORMAT -------------------------------------
+render_rst()
+
+## SET KNITR OPTIONS --------------------------------------------
+opts_knit$set(
+  out.format = 'gfm',
+  upload.fun = function(x){ gsub('png', '*', x, fixed = T) }
+)
+## SET CHUNK OPTIONS --------------------------------------------
+opts_chunk$set(
+	dev        = c('png', 'pdf'),
+	fig.path   = "_downloads/",
+	cache.path = ".cache/",
+	fig.width  = 4,
+	fig.height = 4,
+	fig.align  = "center",
+  tidy = FALSE
+)
+
+hook_out = knit_hooks$get('output')
+
+knit_hooks$set(output = function(x, options){
+   if (options$results == 'html'){
+      relpath = ifelse(is.null(options$relpath), "../_downloads", options$relpath)
+      x = gsub("_downloads", relpath, x, fixed = TRUE)
+      content = knitr:::make_directive('raw', 'html', '', paste(x, collapse = '\n'))
+      paste(c('\n\n.. only:: html\n', knitr:::indent_block(content), ''), collapse = '\n')
+   } else {
+     hook_out(x, options)
+   }
+})
+
+knit_hooks$set(document = function(x, options){
+  gsub('``x', "```", x, fixed = TRUE)
+})
+
+make_image <- function(r1, path){
+  r1$save(path, cdn = TRUE)
+  img <- gsub(".html$", "", path)
+  invisible(take_screenshot(path, img))
+  cat(knitr:::make_directive('image', sprintf('_knit/%s.png', img), ""))
+}
+make_iframe <- function(r1){
+  content = paste(capture.output(r1$show('iframesrc', cdn = TRUE)), collapse = '\n')
+  cat(knitr:::make_directive('raw', 'html', '', content))
+}
+
+latex_image <- function(img){
+  cat(sprintf(":download:`Standalone <_downloads/%s.html>`,   `Play <../playground.html#?n=%s>`_", img, img), sep = " ")
+  cat('\n')
+  cat(knitr:::make_directive('only', 'latex', '', 
+    content =  knitr:::make_directive('image', paste0(img, "-html.png"), '')
+  ))
+}
+
+make_edit_button <- function(opt){
+  content = sprintf('
+    <a href="../playground.html#?n=%s" class="button icon edit big">
+      <span>Edit</span>
+    </a><br/>
+  ', opt)
+
+  content2 = sprintf('
+    <a href="../playground.html#?n=%s" class="btn btn-success btn-mini float-right" target="_blank">
+      <span class="fa fa-edit"></span> Edit
+    </a><br/>
+  ', opt)
+  cat(knitr:::make_directive('raw', 'html', '', content2))
+}
+
+
+
+
+## KNIT DOCUMENT ------------------------------------------------
+args = commandArgs(trailingOnly = TRUE)
+library(methods)
+knit(args[1])
+purl(args[1], documentation = 1L)

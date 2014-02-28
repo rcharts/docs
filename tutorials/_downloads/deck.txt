@@ -1,0 +1,22 @@
+---
+title: Slidify and rCharts
+mode: selfcontained
+ext_widgets: {rCharts: [libraries/polycharts, libraries/nvd3]}
+---
+
+## Chart 1: Polychart
+
+```{r results = "asis", comment = NA}
+library(rCharts)
+r1 <- rPlot(mpg ~ wt, data = mtcars, type = 'point')
+r1$show("inline")
+```
+
+---
+
+## Chart 2: NVD3
+
+```{r results = "asis", comment = NA}
+r1 <- nPlot(mpg ~ wt, data = mtcars, type = 'scatterChart')
+r1$show("inline")
+```

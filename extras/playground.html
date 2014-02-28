@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Try rCharts Online!</title>
+      <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+      <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+      <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type='text/javascript' src="https://public.opencpu.org/js/archive/opencpu-0.4.js"></script>
+      <script type='text/javascript' src="http://slidify.github.io/ile/libraries/widgets/interactive/js/ace/js/ace.js"></script>
+      <script type='text/javascript' src="http://angular-ui.github.io/ui-ace/dist/ui-ace.min.js"></script>
+      <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+  
+  <style type='text/css'>
+    @import url(http://fonts.googleapis.com/css?family=Lora|Lato);
+h2 {
+   font-family: Lato;   
+}
+p {
+  font-family: "Lora";
+  text-align: justify;
+  line-height: 22px;
+}
+.ace_editor  {
+  height : 200px;
+}
+#output {
+  width: 100%;
+  height: 500px;
+}
+body {
+  margin-top: 40px;
+}
+
+  </style>
+  
+</head>
+<body ng-app="myApp">
+  <div class='container' ng-controller='MainCtrl'>
+    <div class='col-lg-4'>
+      <div ng-model='code' ui-ace="aceOptions">{{ code }}
+      </div><br/>
+      <input type='submit' value='Submit' 
+        class='btn btn-success' ng-click='makeChart()' />
+      <a class='btn btn-danger' id='download' download='chart.html' style='display:none'
+        ng-href='{{dnlink}}'><span class="glyphicon glyphicon-download"></span> Download</a>
+    </div>
+    <div class='col-lg-8'>
+      <div id='loading' style='display:none;'>
+      <img src="http://i.imgur.com/dLNEcOB.gif"></img>   
+    </div>
+    <iframe id='output' seamless scrolling = "no" frameborder = "0"
+      allowTransparency = "true"></iframe>
+  </div>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+ocpu.seturl("//ramnathv.ocpu.io/rCharts/R")
+
+var myApp = angular.module('myApp', ['ui.ace'])
+
+
+myApp.controller('MainCtrl', function($scope, $http, $location){
+    $scope.n = function(){
+      console.log($location.search())
+      return $location.search()['n'] || 0
+    }
+    console.log($scope.n())
+    $scope.gists = [
+        {title: 'Example 1: Polychart', id: 8025095},
+        {title: 'Example 2: NVD3', id: 8025269},
+        {title: 'Example 3: MorrisJS', id: 8025647},
+        {title: 'Example 4: xCharts', id: 8025702},
+        {title: 'Example 5: Highcharts', id: 8025747},
+        {title: 'Example 6: Leaflet', id: 8025792},
+        {title: 'Example 7: DimpleJS', id: 8026851}
+    ]
+    $scope.gist = $scope.gists[0]
+    $scope.getCode = function(id){
+      /*
+       $.getJSON("https://api.github.com/gists/" + id).success(
+         function(result){
+           $scope.$apply(function (){
+             $scope.code = result.files['code.R'].content
+           })
+         }
+       )
+      */
+      $.getJSON("examples.json").success(
+        function(result){
+          console.log(result)
+          $scope.$apply(function(){
+            $scope.code = result[$scope.n()]
+          })
+        }
+      )
+    }
+   
+   $scope.makeChart = function(){
+        $("#output").attr('src', '')
+        $("#loading").show()
+        var req = ocpu.call("make_chart", {
+        text: $scope.code   
+     }, function(session){
+       $("#loading").hide()
+       $("#output").attr('src', session.getLoc() + "files/output.html");  
+       $("#download").show()
+       $scope.$apply(function(){
+         $scope.dnlink = session.getLoc() + "files/output.html"
+       })
+     }).fail(function(text){
+      alert("Error: " + req.responseText);
+     });  
+   }
+   $scope.aceOptions = {
+     theme: 'solarized_light',
+     mode: 'r',
+     useWrapMode : true
+   }
+   $scope.$watch('gist', function(newGist){
+     $scope.getCode(newGist.id)
+     $("#output").attr('src', "")
+     $("#download").hide()
+   })
+})
+
+
+//]]>  
+
+</script>
+
+
+</body>
+
+
+</html>
