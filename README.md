@@ -17,7 +17,7 @@ $ make rst && make html && make latexpdf
 How to Contribute
 -----------------
 
-I am still figuring out the best way for others to contribute to this effor. I will update this section once I come up with a minimal set of guidelines.
+I am still figuring out the best way for others to contribute to this effort. I will update this section once I come up with a minimal set of guidelines.
 
 
 
