@@ -36,7 +36,7 @@ make_edit_button('intro-polychart')
 
 .. only:: latex
 
-   .. image:: _knit/_figures/chart1.png
+   .. image:: _downloads/chart1.png
 
 
 

@@ -34,7 +34,7 @@ Polycharts
         ' scrolling='no' seamless
         class='rChart polycharts '
         id=iframe-
-        chart184762f7bd9a9
+        chart1513311a246
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -57,7 +57,7 @@ Polycharts
 
 .. only:: latex
 
-   .. image:: _knit/_figures/chart1.png
+   .. image:: _downloads/chart1.png
 
 
 
@@ -89,7 +89,7 @@ NVD3
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart184764c6d263b
+        chart1511f994d2e
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -136,7 +136,7 @@ Morris
         ' scrolling='no' seamless
         class='rChart morris '
         id=iframe-
-        chart184765cc9e9ff
+        chart151636a20cd
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -183,7 +183,7 @@ Highcharts
         ' scrolling='no' seamless
         class='rChart highcharts '
         id=iframe-
-        chart184763077989c
+        chart1516ac8fa4c
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -230,7 +230,7 @@ Rickshaw
         ' scrolling='no' seamless
         class='rChart rickshaw '
         id=iframe-
-        chart1847611f21434
+        chart151197cb204
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 

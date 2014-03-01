@@ -1,0 +1,91 @@
+.. _controls:
+
+Controls
+========
+
+Let us start by creating a simple scatterplot of mileage vs weight of cars from the ubiquitous ``mtcars`` dataset.
+
+
+
+
+
+
+.. sourcecode:: r
+    
+
+    library(rCharts)
+    n1 <- rPlot(mpg ~ wt, data = mtcars, color = "gear", type = "point")
+    n1
+
+
+.. only:: html
+
+    
+    .. raw:: html
+        
+    
+        <iframe src='
+        ../_downloads/controls-polychart1.html
+        ' scrolling='no' seamless
+        class='rChart polycharts '
+        id=iframe-
+        chart53775692953
+        ></iframe>
+        <style>iframe.rChart{ width: 100%; height: 400px;}</style>
+
+
+
+
+:download:`View <_downloads/controls-polychart1.html>`
+
+
+AngularJS 
+---------
+
+Suppose, we want to let the user choose the `x`, `y` and `color` variables interactively. This can be done using the `addControls` method, which accepts three arguments: (1) the variable to control, (2) it's current value and (3) the possible set of values to choose from. By default, `addControls` uses AngularJS to add the controls.
+
+
+.. sourcecode:: r
+    
+
+    n1$addControls("x", value = "wt", values = names(mtcars))
+    n1$addControls("y", value = "wt", values = names(mtcars))
+    n1$addControls("color", value = "gear", values = names(mtcars))
+    n1
+
+
+
+.. image:: _downloads/controls-polychart2.png
+
+:download:`View <_downloads/controls-polychart2.html>`
+
+DatGUI
+-------
+
+
+Let us build another chart with interactive controls, this time using the `NVD3 <http://nvd3.org>`_ library for the chart and the `DatGUI <http://davidwalsh.name/dat-gui>`_ javascript library for interactive controls. As before, the code stays almost the same, except that we swap the controls template to use ``datgui`` instead of ``angularjs``.
+
+
+.. sourcecode:: r
+    
+
+    HairEye <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+    n1 <- nPlot(Freq ~ Eye, data = HairEye, group = 'Hair', type = 'multiBarChart')
+    n1$addControls("type", "multiBarChart", 
+      values = c('multiBarChart', 'multiBarHorizontalChart')
+    )
+    n1$setTemplate(script = system.file('libraries', 'nvd3', 'controls', 'datgui.html', package = 'rCharts'))
+    n1$set(width = 650, height = 500)
+    n1
+
+
+
+.. image:: _downloads/controls-nvd31.png
+
+:download:`View <_downloads/controls-nvd31.html>`
+
+Currently, rCharts only supports simple controls, and my plan is to extend this support. In my next post, I will discuss how rCharts can integrate with a server side framework like `Shiny <http://rstudio.com/shiny>`_ or `OpenCPU <http://opencpu.org>`_ to allow for greater level of interactivity, that might involve more extensive manipulation of data.
+
+.. raw:: html
+
+   <style>#angularjs iframe.rChart {height: 700px;}</style>
