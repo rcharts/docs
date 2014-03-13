@@ -11,7 +11,7 @@ n1 <- rPlot(mpg ~ wt, data = mtcars, color = "gear", type = "point")
 n1
 
 
-## ----controls-polychart2, results = 'hide'-------------------------------
+## ----controls-polychart2, results = 'hide', cache = F--------------------
 n1$addControls("x", value = "wt", values = names(mtcars))
 n1$addControls("y", value = "wt", values = names(mtcars))
 n1$addControls("color", value = "gear", values = names(mtcars))

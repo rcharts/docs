@@ -81,7 +81,7 @@ We will start by first creating a scatterplot of `SOG` by `yearID` across all te
         ' scrolling='no' seamless
         class='rChart polycharts '
         id=iframe-
-        chart15d57750314e7
+        chart33f943078d49
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -89,6 +89,12 @@ We will start by first creating a scatterplot of `SOG` by `yearID` across all te
 
 
 :download:`Standalone <_downloads/chart1.html>`
+
+.. only:: latex
+
+   .. image:: _downloads/chart1.pdf
+      :align: center
+      :scale: 75 %
 
 
 Now, we need to add a line plot of the  average ``SOG`` for the league by ``yearID``. We do this by adding a second layer to the chart, which copies the elements of the previous layer and overrides the ``data``, `type`, ``color`` and ``tooltip`` arguments. The R code is shown below and you will note that the resulting chart now shows a blue line chart corresponding to the league average ``SOG``.
@@ -114,7 +120,7 @@ Now, we need to add a line plot of the  average ``SOG`` for the league by ``year
         ' scrolling='no' seamless
         class='rChart polycharts '
         id=iframe-
-        chart15d57750314e7
+        chart33f943078d49
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -122,6 +128,12 @@ Now, we need to add a line plot of the  average ``SOG`` for the league by ``year
 
 
 :download:`Standalone <_downloads/chart2.html>`
+
+.. only:: latex
+
+   .. image:: _downloads/chart2.pdf
+      :align: center
+      :scale: 75 %
 
 Finally, we will overlay a line plot of ``SOG`` by ``yearID`` for a specific team `name`. Later, while building the shiny app, we will turn this into an input variable that a user can choose from a dropdown menu. We use the layer approach used earlier and this time override the `data` and `color` arguments so that the line plot for the team stands out from the league average.
 
@@ -156,6 +168,12 @@ Finally, we will overlay a line plot of ``SOG`` by ``yearID`` for a specific tea
 
 
 :download:`Standalone <_downloads/chart3.html>`
+
+.. only:: latex
+
+   .. image:: _downloads/chart3.pdf
+      :align: center
+      :scale: 75 %
 
 Let us add a little more interactivity to the chart. To keep it simple, we will use handlers in PolychartJS to initiate an action when a user clicks on a point. The current handler is a simple one, which just displays the name of the team clicked on. If you are familiar with Javascript event handlers, the code should be self explanatory.
 

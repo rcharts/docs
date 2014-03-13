@@ -9,6 +9,10 @@ options(
 )
 
 
+## ------------------------------------------------------------------------
+library(rCharts)
+
+
 ## ----intro-polychart, message = F, results = 'html', comment = NA--------
 r1 <- rPlot(mpg ~ wt, data = mtcars, type = 'point')
 r1
@@ -69,5 +73,18 @@ p4
 
 ## ----results = 'asis', comment = NA, echo = F----------------------------
 make_edit_button('intro-rickshaw')
+
+
+## ----intro-xcharts, message = F, results = 'html', comment = NA, warning = F----
+require(reshape2)
+uspexp <- melt(USPersonalExpenditure)
+names(uspexp)[1:2] = c('category', 'year')
+x1 <- xPlot(value ~ year, group = 'category', data = uspexp, 
+  type = 'line-dotted')
+x1
+
+
+## ----results = 'asis', comment = NA, echo = F----------------------------
+make_edit_button('intro-xcharts')
 
 

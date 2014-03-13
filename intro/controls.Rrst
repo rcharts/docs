@@ -24,9 +24,9 @@ n1
 AngularJS 
 ---------
 
-Suppose, we want to let the user choose the `x`, `y` and `color` variables interactively. This can be done using the `addControls` method, which accepts three arguments: (1) the variable to control, (2) it's current value and (3) the possible set of values to choose from. By default, `addControls` uses AngularJS to add the controls.
+Suppose, we want to let the user choose the ``x``, ``y`` and ``color`` variables interactively. This can be done using the :func:`addControls` method, which accepts three arguments: (1) the variable to control, (2) it's current value and (3) the possible set of values to choose from. By default, ``addControls`` uses AngularJS to add the controls.
 
-```{r controls-polychart2, results = 'hide'}
+```{r controls-polychart2, results = 'hide', cache = F}
 n1$addControls("x", value = "wt", values = names(mtcars))
 n1$addControls("y", value = "wt", values = names(mtcars))
 n1$addControls("color", value = "gear", values = names(mtcars))
@@ -62,4 +62,8 @@ Currently, rCharts only supports simple controls, and my plan is to extend this 
 
 .. raw:: html
 
-   <style>#angularjs iframe.rChart {height: 700px;}</style>
+   <style>
+     #angularjs iframe.rChart {height: 700px;}
+     body {text-align: justify;}
+    </style>
+

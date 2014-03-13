@@ -65,7 +65,7 @@ Scatter Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d3ffa04fc
+        chart5f367b35f49e
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -112,7 +112,7 @@ Multibar Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d52921d51
+        chart5f3623800a43
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -149,7 +149,7 @@ Multibar Horizontal Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d72c46939
+        chart5f36368a42c5
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -194,7 +194,7 @@ Pie Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d1f7c9b09
+        chart5f3653240e12
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -237,7 +237,7 @@ Donut Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868dd1843ad
+        chart5f365e1cfb44
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -280,7 +280,7 @@ Line Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d3783daeb
+        chart5f3616f1637
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -329,7 +329,7 @@ Line with Focus Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d5a79ba9a
+        chart5f366c6a8f0
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -378,7 +378,7 @@ Stacked Area Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d6982337a
+        chart5f361ccf964f
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -428,7 +428,7 @@ Multi Chart
         ' scrolling='no' seamless
         class='rChart nvd3 '
         id=iframe-
-        chart1868d918f68d
+        chart5f36414e917c
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 

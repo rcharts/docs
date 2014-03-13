@@ -1,7 +1,14 @@
 .. _intro:
 
 Create
-=============
+======
+
+rCharts uses a formula interface to specify plots, just like the lattice package. Here are a few examples you can try out in your R console.
+
+.. note::
+
+   Every example comes with an edit button that allows you to experiment with the code online. The online playground was built using `OpenCPU <http://opencpu.org>`_
+
 
 .. toctree::
    :maxdepth: 2
@@ -17,6 +24,12 @@ options(
   rcharts.mode = 'iframe'
 )
 ```
+
+First let us load the ``rCharts`` package
+
+```{r}
+library(rCharts)
+``` 
 
 
 Polycharts
@@ -58,7 +71,18 @@ p2
 make_edit_button('intro-nvd3')
 ```
 
-:download:`Standalone <_downloads/intro-nvd3.html>`
+.. only:: html
+
+   :download:`Standalone <_downloads/intro-nvd3.html>`
+
+.. only:: latex
+
+   .. image:: _downloads/intro-nvd3.pdf
+      :scale: 75 %
+      :align: center
+
+
+`View Interactive <_downloads/intro-nvd3.html>`_
 
 
 
@@ -115,6 +139,25 @@ p4
 
 ```{r results = 'asis', comment = NA, echo = F}
 make_edit_button('intro-rickshaw')
+```
+
+xCharts
+--------
+
+
+```{r intro-xcharts, message = F, results = 'html', comment = NA, warning = F}
+require(reshape2)
+uspexp <- melt(USPersonalExpenditure)
+names(uspexp)[1:2] = c('category', 'year')
+x1 <- xPlot(value ~ year, group = 'category', data = uspexp, 
+  type = 'line-dotted')
+x1
+```
+
+:download:`Standalone <_downloads/intro-xcharts.html>`
+
+```{r results = 'asis', comment = NA, echo = F}
+make_edit_button('intro-xcharts')
 ```
 
 .. raw:: html

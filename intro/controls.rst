@@ -29,7 +29,7 @@ Let us start by creating a simple scatterplot of mileage vs weight of cars from 
         ' scrolling='no' seamless
         class='rChart polycharts '
         id=iframe-
-        chart53775692953
+        chart1fad3b254b44
         ></iframe>
         <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -42,7 +42,7 @@ Let us start by creating a simple scatterplot of mileage vs weight of cars from 
 AngularJS 
 ---------
 
-Suppose, we want to let the user choose the `x`, `y` and `color` variables interactively. This can be done using the `addControls` method, which accepts three arguments: (1) the variable to control, (2) it's current value and (3) the possible set of values to choose from. By default, `addControls` uses AngularJS to add the controls.
+Suppose, we want to let the user choose the `````, ``y`` and ``color`` variables interactively. This can be done using the :func:`addControls` method, which accepts three arguments: (1) the variable to control, (2) it's current value and (3) the possible set of values to choose from. By default, ``addControls`` uses AngularJS to add the controls.
 
 
 .. sourcecode:: r
@@ -88,4 +88,8 @@ Currently, rCharts only supports simple controls, and my plan is to extend this 
 
 .. raw:: html
 
-   <style>#angularjs iframe.rChart {height: 700px;}</style>
+   <style>
+     #angularjs iframe.rChart {height: 700px;}
+     body {text-align: justify;}
+    </style>
+
